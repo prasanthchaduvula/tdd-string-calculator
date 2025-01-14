@@ -71,4 +71,8 @@ class TestStringCalculator < Minitest::Test
     assert_equal 10, @calculator.add("//[***][%%%]\n2***3%%%5")
     assert_equal 21, @calculator.add("//[###][$$$][%%%]\n7###6$$$8%%%0")
   end
+
+  def test_no_numbers_in_input
+    assert_equal 0, @calculator.add("//[***]\n")
+  end
 end
