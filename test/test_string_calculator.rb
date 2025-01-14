@@ -47,4 +47,9 @@ class TestStringCalculator < Minitest::Test
     error = assert_raises(ArgumentError) { @calculator.add("//;\n-4;5;-6") }
     assert_equal "Negative numbers not allowed: -4, -6", error.message
   end
+
+  def test_ignore_numbers_bigger_than_1000
+    assert_equal 2, @calculator.add("2,1001")
+    assert_equal 1002, @calculator.add("2,1000")
+  end
 end
