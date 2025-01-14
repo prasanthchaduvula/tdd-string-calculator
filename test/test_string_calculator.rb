@@ -52,4 +52,8 @@ class TestStringCalculator < Minitest::Test
     assert_equal 2, @calculator.add("2,1001")
     assert_equal 1002, @calculator.add("2,1000")
   end
+
+  def test_all_numbers_greater_than_1000
+    assert_equal 0, @calculator.add("1001,2000")
+  end
 end
