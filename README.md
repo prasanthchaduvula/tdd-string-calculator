@@ -4,33 +4,55 @@ A simple string calculator built in Ruby to demonstrate TDD (Test-Driven Develop
 
 ## Features
 1. **Empty String**: Returns `0` for an empty string input.
-    - Example: `""` → Output: `0`
+    ```ruby
+    "" # => 0
+    ```
 2. **Sum of Numbers**: Sums up a string of comma-separated numbers.
-    - Example: `"1"` → Output: `1`
-    - Example: `"1,5"` → Output: `6`
-    - Example: `"1,2,3,4"` → Output: `10`
+    ```ruby
+    "1"       # => 1
+    "1,5"     # => 6
+    "1,2,3,4" # => 10
+    ```
 3. **Newline Delimiters**: Supports newlines (`\n`) as delimiters in addition to commas.
-    - Example: `"1\n2,3"` → Output: `6`
-    - Example: `"4\n5,6\n,7"` → Output: `22`
-4. **Support Different Delimiters**: Handles single, multi-character, or multiple custom delimiters.`"//[delimiter]\n[numbers]"`  
-    - Example: `"//;\n1;2"` → Output: `3`
-    - Example: `"//4;\n5,6;7"` → Output: `22`
-    - Example: `"//1,5\n;7//"` → Output: `13`
-    - Example: `"//|\n2|3|5"` → Output: `10`
-    - Example: `"//[*][%]\n1*2%3"` → Output: `6`
+    ```ruby
+    "1\n2,3"     # => 6
+    "4\n5,6\n,7" # => 22
+    ```
+4. **Support Different Delimiters**: To change a delimiter, the beginning of the string will contain a separate line that looks like this: `“//[delimiter]\n[numbers…]”`.
+    ```ruby
+    "//;\n1;2"        # => 3
+    "//4;\n5,6;7"     # => 22
+    "//1,5\n;7//"     # => 13
+    
+    ``` 
 5. **Negative Numbers**: Raises an exception when the input contains negative numbers.
-    - Example: `-1` Error: `Negative numbers not allowed: -1`
-    - Example: `"-1,2,-3"` → Error: `Negative numbers not allowed: -1, -3`
-    - Example: `"//;\n-4;5;-6"` →  Error: `Negative numbers not allowed: -4, -6`
+    ```ruby
+    "-1"           # => Negative numbers not allowed: -1
+    "-1,2,-3"      # => Negative numbers not allowed: -1, -3
+    "//;\n-4;5;-6" # => Negative numbers not allowed: -4, -6
+    ```
 6. **Ignore Large Numbers**: Ignores numbers greater than 1000.
-    - Example: `"1001,2"` → Output: `2`
-    - Example: `"2,1000,1002"` → Output: `1002`
-    - Example: `"1001,2000"` → Output: `0`
-7. **Delimiters Can Be Of Any Length**: Supports multiple delimiters of any length. `"//[delimiter]\n"`  
-    - Example: `"//[***]\n1***2***3"` → Output: `6`
-    - Example: `"//[###]\n4###5###6"` → Output: `15`
-    - Example: `"//[***][%%%]\n2***3%%%5"` → Output: `10`
-    - Example: `"//[###][$$$][%%%]\n7###6$$$8%%%0"` → Output: `21`
+    ```ruby
+    "1001,2"      # => 2
+    "2,1000,1002" # => 1002
+    "1001,2000"   # => 0
+    ```
+7. **Delimiters Can Be Of Any Length**: `//[delimiter]\n`
+    ```ruby
+    "//[***]\n1***2***3" # => 6
+    "//[###]\n4###5###6" # => 15
+    ```
+8. **Allow multiple delimiters**: `“//[delim1][delim2]\n”`
+    ```ruby
+    "//[*][%]\n1*2%3" # => 6
+    "//|\n2|3|5"      # => 10
+    ```
+9. **Handle multiple delimiters with length longer than one char**:
+    ```ruby
+    "//[***][%%%]\n2***3%%%5"          # => 10
+    "//[###][$$$][%%%]\n7###6$$$8%%%0" # => 21
+    ```
+
 ---
 
 ## Installation
@@ -81,7 +103,7 @@ A simple string calculator built in Ruby to demonstrate TDD (Test-Driven Develop
 - Run the following command to execute the tests:
 
     ```bash
-    ruby test/string_calculator_test.rb
+    ruby test/test_string_calculator.rb
     ```
 
 ## Development Notes
