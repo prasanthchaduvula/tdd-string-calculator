@@ -56,4 +56,9 @@ class TestStringCalculator < Minitest::Test
   def test_all_numbers_greater_than_1000
     assert_equal 0, @calculator.add("1001,2000")
   end
+
+  def test_delimiters_of_any_length
+    assert_equal 6, @calculator.add("//[***]\n1***2***3")
+    assert_equal 15, @calculator.add("//[###]\n4###5###6")
+  end
 end
