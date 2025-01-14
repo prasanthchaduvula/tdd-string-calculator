@@ -1,14 +1,14 @@
 class StringCalculator
+  NUMBER_REGEX = /-?\d+/
+
   def add(numbers_str)
     return 0 if numbers_str.empty?
 
-    match_numbers = /-?\d+/
+    numbers = numbers_str.scan(NUMBER_REGEX).map(&:to_i)
 
-    numbers = numbers_str.scan(match_numbers)
-    negative_nums = numbers.select { |n| n.to_i < 0 }
-
+    negative_nums = numbers.select(&:negative?)
     raise ArgumentError, "Negative numbers not allowed: #{negative_nums.join(', ')}" if negative_nums.any?
     
-    numbers.reduce(0) {|total, element| element.to_i > 1000 ? total : total + element.to_i }
+    numbers.reduce(0) {|total, num| num > 1000 ? total : total + num }
   end
 end
