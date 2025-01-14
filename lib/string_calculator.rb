@@ -9,6 +9,6 @@ class StringCalculator
 
     raise ArgumentError, "Negative numbers not allowed: #{negative_nums.join(', ')}" if negative_nums.any?
     
-    numbers.reduce(0) {|total, element| total + element.to_i }
+    numbers.reduce(0) {|total, element| element.to_i > 1000 ? total : total + element.to_i }
   end
 end
