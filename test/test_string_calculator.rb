@@ -34,5 +34,6 @@ class TestStringCalculator < Minitest::Test
     assert_equal 3, @calculator.add("//;\n1;2")
     assert_equal 22, @calculator.add("//4;\n5,6;7")
     assert_equal 13, @calculator.add("//1,5\n;7//")
+    assert_equal 10, @calculator.add("//|\n2|3|5")
   end
 end
