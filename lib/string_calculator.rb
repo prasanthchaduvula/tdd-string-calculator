@@ -2,8 +2,13 @@ class StringCalculator
   def add(numbers_str)
     return 0 if numbers_str.empty?
 
-    match_numbers = /\d+/
+    match_numbers = /-?\d+/
 
-    numbers_str.scan(match_numbers).reduce(0) { |total, element| total + element.to_i }
+    numbers = numbers_str.scan(match_numbers)
+    negative_nums = numbers.select { |n| n.to_i < 0 }
+
+    raise ArgumentError, "Negative numbers not allowed: #{negative_nums.join(', ')}" if negative_nums.any?
+    
+    numbers.reduce(0) {|total, element| total + element.to_i }
   end
 end
